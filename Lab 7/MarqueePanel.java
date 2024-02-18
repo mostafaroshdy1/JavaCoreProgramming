@@ -3,13 +3,13 @@ import java.awt.*;
 
 public class MarqueePanel extends JPanel {
     private JLabel marqueeLabel;
-    private int xPosition; // Current x position of the marquee label
-    private final int moveDistance = 1; // Distance to move in each step
+    private int xPosition; 
+    private final int moveDistance = 10;
 
     public MarqueePanel(String marqueeStr) {
         this.marqueeLabel = new JLabel(marqueeStr);
         this.marqueeLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-        this.xPosition = getWidth(); // Start the label from the right
+        this.xPosition = getWidth();
         add(marqueeLabel);
 
         Thread thread = new Thread(new Runnable() {
@@ -17,7 +17,7 @@ public class MarqueePanel extends JPanel {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(1); // Adjust the sleep time as needed
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -31,7 +31,7 @@ public class MarqueePanel extends JPanel {
     private void moveLabel() {
         xPosition -= moveDistance;
         if (xPosition < -marqueeLabel.getWidth()) {
-            xPosition = getWidth(); // Reset the position when it goes out of the frame
+            xPosition = getWidth();
         }
         marqueeLabel.setLocation(xPosition, 0);
     }
